@@ -35,7 +35,7 @@ http.createServer(async (req, res) => {
                     const id = Date.now(); 
                     users[id] = name; // { 'id번호': name }
                     res.writeHead(201);
-                    res.end('등록 성공'); // 여기서는 왜 또 리턴 안함?
+                    res.end('등록 성공'); // 여기서는 왜 리턴 안함? => 위에서 해서!
                 });
             }
         } else if (req.method === 'PUT') { // 서버 자원을 요청에 들어있는 자원으로 치환
@@ -48,7 +48,7 @@ http.createServer(async (req, res) => {
                 return req.on('end', () => {
                     console.log('PUT 본문(Body):', body);
                     users[key] = JSON.parse(body).name;
-                    return res.end(JSON.stringify(users)); // 또 리턴하는건 뭐지? 그냥 res.end로 끝내면 안되나?
+                    return res.end(JSON.stringify(users)); // 또 리턴하는건 뭐지? 그냥 res.end로 끝내면 안되나? => 끝내도 됨
                 });
             }
         } else if (req.method === 'DELETE') {
